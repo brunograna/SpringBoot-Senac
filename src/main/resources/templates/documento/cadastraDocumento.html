@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Cadastrar Documentto</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="panel-default">
+		<div class="text-center">
+			<h1 class="h4 text-gray-900 mb-4">Cadastrar Documento</h1>
+		</div>
+		
+		<div class="panel-body">
+			<form class="form-horizontal" th:object=${documento} th:action=@{/documento/adicionaDocumento} method="POST" style="margin:10px;">
+				<div class="form-group">
+					<fieldset>
+						<div class="form-group row">
+							<label>NOME</label>
+							<input type="text" class="form-control input-sm" id="id" th:field="*{nome}" autofocus="autofocus" placeholder="Informe o nome" />
+						</div>
+						<div class="form-group row">
+							<label>CODIGO</label>
+							<input type="number" class="form-control input-sm" id="id" th:field="*{codigo}" autofocus="autofocus" placeholder="Informe o codigo" />
+						</div>
+					</fieldset>
+				</div>
+				<div align="center">
+					<button type="submit" class="btn btn-sm btn-success">SALVAR</button>
+					<a th:href="@{/documento/listar}" class="btn btn-sm btn-default">CANCELAR</a>
+				</div>			
+			</form>
+		</div>
+		<a class="btn btn-sm btn-success" th:href="@{/documento/cadastrar}">CADASTRAR NOVO DOCUMENTO</a>
+	</div>
+</body>
+</html>

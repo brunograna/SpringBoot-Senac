@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="ISO-8859-1">
+<title>Listagem de Carros</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="panel-default">
+		<div class="text-center">
+			<h1 class="h4 text-gray-900 mb-4">Listagem de Carros</h1>
+		</div>
+		
+		<div class="panel-body">
+			<div class="table-responsive">
+				<!-- Se -->
+				<tr th:if="${#lists.isEmpty(carros)}">
+					<span class="text-center" style="display:block;">
+						Nao existe nenhuma carro							
+					</span>
+				</tr>			
+				<!-- Senao -->	
+				<table th:unless="${#lists.isEmpty(carros)}" class="table table-sm table-striped table-hover table-bordered">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>MODELO</th>
+							<th>CHAVE</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="carro : ${carros }">	
+							<td th:text="${carro.id}"></td>
+							<td th:text="${carro.modelo}"></td>
+							<td th:text="${carro.chave.id}"></td>
+							<td>
+								<div class="btn-group pull-right">
+									<a class="btn btn-sm btn-primary" th:href="@{/carro/alterar/{id}(id=${carro.id})}">ALTERAR</a>
+									<a class="delete btn btn-sm btn-danger" th:href="@{/carro/deletar/{id}(id=${carro.id})}">DELETAR</a>
+								</div>
+							</td>
+						</tr>						
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<a class="btn btn-sm btn-success" th:href="@{/carro/cadastrar}">CADASTRAR NOVO CARRO</a>
+	</div>
+</body>
+</html>
