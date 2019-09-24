@@ -30,8 +30,29 @@
 							<label>Chave</label>
 							<select class="form-control" th:field="*{chave}">
 								<option value="">Selecione a chave</option>
-								<option th:each="chave : ${chaves}" th:value="${chave.id}" th:text="${chave.id}"></option>
+								<option th:each="chave : ${chaves}" th:value="${chave.id}" th:text="${chave.codigo}"></option>
 							</select>
+						</div>
+						<div class="form-group">
+							<label>Documento</label>
+							<select class="form-control" th:field="*{documento}">
+								<option value="">Selecione o documento</option>
+								<option th:each="documentoEach : ${documentos}" th:value="${documentoEach.id}" th:text="${documentoEach.nome}"></option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Fabricante</label>
+							<select class="form-control" th:field="*{fabricante}">
+								<option value="">Selecione a fabricante</option>
+								<option th:each="fabricanteEach : ${fabricantes}" th:value="${fabricanteEach.id}" th:text="${fabricanteEach.nome}"></option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Acessórios</label>
+							<div th:each="acessorio : ${acessorios}">
+								<input type="checkbox" th:field="*{acessorios}" th:value="${acessorio.id}" />
+								<label th:for="${('acessorios')}" th:text="${acessorio.nome}"></label>
+							</div>
 						</div>
 					</fieldset>
 				</div>

@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.service.ChaveService;
+import com.example.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.domain.Carro;
-import com.example.demo.service.CarroService;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
@@ -23,7 +22,16 @@ public class CarroController {
 
 	@Autowired
 	private ChaveService chaveService;
-	
+
+	@Autowired
+	private FabricanteService fabricanteService;
+
+	@Autowired
+	private DocumentoService documentoService;
+
+	@Autowired
+	private AcessorioService acessorioService;
+
 	@GetMapping("/listar")
 	public ModelAndView listarCarros() {
 		ModelAndView mv = new ModelAndView("carro/listaCarro");
@@ -35,6 +43,9 @@ public class CarroController {
 	public ModelAndView cadastrarCarro() {
 		ModelAndView mv = new ModelAndView("carro/cadastraCarro");
 		mv.addObject("chaves", chaveService.searchAll());
+		mv.addObject("documentos", documentoService.searchAll());
+		mv.addObject("fabricantes", fabricanteService.searchAll());
+		mv.addObject("acessorios", acessorioService.searchAll());
 		mv.addObject("carro", new Carro());
 		return mv;		
 	}
@@ -55,6 +66,9 @@ public class CarroController {
 	public ModelAndView alterarCarro(@PathVariable("id") Integer id) throws ObjectNotFoundException {
 		ModelAndView mv = new ModelAndView("carro/alteraCarro");
 		mv.addObject("chaves", chaveService.searchAll());
+		mv.addObject("documentos", documentoService.searchAll());
+		mv.addObject("fabricantes", fabricanteService.searchAll());
+		mv.addObject("acessorios", acessorioService.searchAll());
 		mv.addObject("carro", service.search(id));
 		return mv;		
 	}
